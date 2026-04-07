@@ -2,7 +2,7 @@ Difficulty 1248
 
 3754. Concatenate Non-Zero Digits and Multiply by Sum I
 
-ou are given an integer n.
+You are given an integer n.
 
 Form a new integer x by concatenating all the non-zero digits of n in their original order. If there are no non-zero digits, x = 0.
 
