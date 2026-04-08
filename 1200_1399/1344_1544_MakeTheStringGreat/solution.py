@@ -6,8 +6,6 @@ class Solution:
                     return False
             return True
     def makeGood(self, s: str) -> str:
-
-        
         while not self.isgood(s):
             for k in range(len(s)-1):
                 if not self.isgood(s[k:k+2]):
