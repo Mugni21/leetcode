@@ -1,0 +1,138 @@
+WEATHER REGRESSION PRACTICE
+
+Goal
+----
+This is a pandas / regression practice exercise in a HackerRank-style format.
+You are given a dataframe with daily temperatures from several towns and from NYC.
+Your task is to answer Questions Q1-Q6 by writing code in solution.py.
+
+Folder structure
+----------------
+This folder contains:
+- notes.txt     -> full prompt, dataset, expected outputs, and test cases
+- solution.py   -> starter template with TODO markers and automated tests
+
+Main skills tested
+------------------
+- pandas filtering and aggregation
+- standard deviation and median
+- linear regression with sklearn
+- model selection via MSE
+- combinations over feature subsets
+- giving a reasonable approximation strategy when brute force is too expensive
+
+Dataset
+-------
+Use this exact dataset:
+
+import pandas as pd
+
+df = pd.DataFrame({
+    "day":    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "NYC":    [72, 75, 78, 80, 83, 85, 88, 84, 81, 79, 76, 74],
+    "Town_1": [70, 73, 76, 79, 82, 84, 87, 83, 80, 77, 74, 72],
+    "Town_2": [65, 68, 72, 77, 81, 86, 91, 89, 85, 80, 73, 69],
+    "Town_3": [90, 92, 95, 99, 101, 98, 96, 94, 89, 87, 85, 88],
+    "Town_4": [55, 60, 66, 71, 75, 80, 84, 82, 78, 72, 67, 61],
+    "Town_5": [74, 74, 77, 79, 82, 85, 89, 86, 82, 78, 75, 73]
+})
+
+Problem statement
+-----------------
+Q1. Among Town_1 through Town_5, which town has the largest sample standard deviation?
+
+Q2. Compute the median temperature in NYC on the days where Town_3 had temperature in the inclusive range [90, 100].
+
+Q3. For each town i in {1,...,5}, fit a simple linear regression predicting NYC from Town_i:
+    NYC_hat = beta_0 + beta_1 * Town_i
+For each model, compute the mean squared error on the full dataset.
+Return the town with the smallest MSE and its MSE.
+
+Q4. Now consider all pairs of distinct towns. For each pair, fit a linear regression predicting NYC from those two towns.
+Return the best pair, meaning the pair with the smallest MSE, together with its MSE.
+
+Q5. Using the five single-town regressions from Q3, compute the sum of the absolute values of the five slope coefficients.
+
+Q6. Suppose now there are P towns instead of 5, where P is very large. You want to find a good subset of towns for predicting NYC, but brute force over all subsets is too expensive.
+Write a short code comment explaining one reasonable approximation strategy.
+
+Requirements
+------------
+- Use Python.
+- Use pandas and any standard numerical library you want.
+- For Q3/Q4, using sklearn.linear_model.LinearRegression is allowed.
+- For Q6, a short comment is enough.
+- Your code should be clean and executable from top to bottom.
+- Keep the function names from solution.py so the automated tests work.
+
+Expected answers for the base dataset
+-------------------------------------
+These are the target outputs the tests will check.
+
+Q1:
+- Expected town: Town_4
+
+Q2:
+- Days where Town_3 is in [90, 100]: days 1, 2, 3, 4, 6, 7, 8
+- Corresponding NYC temps: [72, 75, 78, 80, 85, 88, 84]
+- Expected median: 80.0
+
+Q3:
+- Best single-town model: Town_1
+- Expected MSE: 0.17047619047619045
+
+Q4:
+- Best pair: ('Town_1', 'Town_4')
+- Expected MSE: 0.14475991090933812
+  Note: if you return ('Town_4', 'Town_1') instead, that should be treated as equivalent.
+
+Q5:
+- Expected sum of absolute slopes: 4.073996757877766
+
+Q6:
+- There is no single exact output.
+- A valid answer should mention a sensible approximation such as L1-penalized regression (lasso), forward stepwise selection, backward elimination, or another well-justified feature selection heuristic.
+
+How to run
+----------
+From this folder, run:
+
+python solution.py
+
+If your solution is correct, all tests should pass.
+
+Automated tests included
+------------------------
+solution.py includes at least these checks:
+
+Test 1:
+- Q1 returns Town_4 on the base dataset.
+
+Test 2:
+- Q2 returns 80.0 on the base dataset.
+
+Test 3:
+- Q3 returns Town_1 and the expected MSE up to tolerance.
+
+Test 4:
+- Q4 returns the pair {Town_1, Town_4} and the expected MSE up to tolerance.
+
+Test 5:
+- Q5 returns the expected sum of absolute slopes up to tolerance.
+
+Optional challenge ideas after you solve it
+-------------------------------------------
+1. Re-implement Q3 without sklearn, using the closed-form OLS formula.
+2. Re-implement Q4 without sklearn, using normal equations.
+3. Add missing values and only fit on rows where all required columns are observed.
+4. Generalize Q4 to find the best k-town model.
+5. Compare brute force subset search against lasso on a larger synthetic dataset.
+
+Notes on style
+--------------
+This is meant to feel a bit like a HackerRank or quant OA question, not like a standard LeetCode problem.
+So the key practice is:
+- dataframe fluency
+- fast implementation
+- not freezing when regression / feature selection appears
+
