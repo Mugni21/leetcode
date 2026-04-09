@@ -19,7 +19,9 @@ class Solution:
             wavy+=countpeaks(k)
         
         return wavy
-    
+
+
+#COuldn't come up with anything better than brute force
 
 
 
