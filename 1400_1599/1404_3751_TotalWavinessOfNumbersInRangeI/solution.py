@@ -19,4 +19,14 @@ class Solution:
             wavy+=countpeaks(k)
         
         return wavy
+    
+
+
+
+
+
+
+    
+
+        
 
