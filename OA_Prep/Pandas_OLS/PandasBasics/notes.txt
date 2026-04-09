@@ -1,0 +1,193 @@
+BASIC PANDAS BOOTCAMP
+
+Goal
+----
+This is a pandas practice exercise in a HackerRank-style format.
+It is meant to build fluency from very basic dataframe operations up to
+comfortable medium-level manipulations.
+
+Your task is to answer Questions Q1-Q12 by writing code in solution.py.
+
+Folder structure
+----------------
+This folder contains:
+- notes.txt     -> full prompt, dataset, expected outputs, and test cases
+- solution.py   -> starter template with TODO markers and automated tests
+
+Main skills tested
+------------------
+- selecting rows and columns
+- dataframe shape and indexing
+- filtering with boolean masks
+- mean, median, count, and standard deviation
+- value_counts
+- sorting
+- creating new columns
+- grouping and aggregation
+- correlation
+- working cleanly and quickly with pandas
+
+Dataset
+-------
+Use this exact dataset:
+
+import pandas as pd
+
+df = pd.DataFrame({
+    "day":       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "NYC":       [70, 72, 68, 75, 78, 80, 77, 74, 73, 76],
+    "Town_1":    [69, 71, 67, 74, 77, 79, 76, 73, 72, 75],
+    "Town_2":    [65, 67, 66, 70, 74, 82, 79, 71, 70, 72],
+    "Town_3":    [88, 91, 95, 89, 92, 97, 93, 87, 90, 94],
+    "Town_4":    [60, 62, 61, 66, 70, 73, 71, 68, 67, 69],
+    "Rainfall":  [0.0, 0.2, 0.0, 0.5, 0.1, 0.0, 0.3, 0.4, 0.0, 0.2],
+    "Condition": ["sunny", "cloudy", "sunny", "rain", "cloudy",
+                  "sunny", "rain", "rain", "sunny", "cloudy"],
+})
+
+Problem statement
+-----------------
+Q1. Return the shape of the dataframe as a tuple (number_of_rows, number_of_columns).
+
+Q2. Return the mean of the NYC column as a float.
+
+Q3. Return the day number on which NYC had its maximum temperature.
+
+Q4. Return how many days Town_2 had temperature at least 75.
+
+Q5. Return the median NYC temperature on the rows where Town_3 is in the inclusive range [90, 95].
+
+Q6. Create a new column called spread defined by:
+    spread = max(Town_1, Town_2, Town_3, Town_4) - min(Town_1, Town_2, Town_3, Town_4)
+Return a tuple (day_with_largest_spread, largest_spread_value).
+
+Q7. Among Town_1 through Town_4, return the town with the largest sample standard deviation.
+
+Q8. Return the Pearson correlation between NYC and Town_1 as a float.
+
+Q9. Return a dictionary mapping each weather condition to its count.
+Example format:
+    {"sunny": 4, "cloudy": 3, "rain": 3}
+
+Q10. Return the mean NYC temperature on the rows where Condition == "sunny".
+
+Q11. Sort the dataframe by Rainfall in descending order and return a list of the first 3 day values in that order.
+
+Q12. Group the rows by whether the day is odd or even. Return a dictionary:
+    {"odd": mean_NYC_on_odd_days, "even": mean_NYC_on_even_days}
+
+Requirements
+------------
+- Use Python.
+- Use pandas.
+- Keep the function names from solution.py so the automated tests work.
+- Your code should be clean and executable from top to bottom.
+
+Expected answers for the base dataset
+-------------------------------------
+Q1:
+- Expected shape: (10, 8)
+
+Q2:
+- Expected mean NYC: 74.3
+
+Q3:
+- Expected day: 6
+
+Q4:
+- Expected count: 2
+
+Q5:
+- Rows where Town_3 is in [90, 95]: days 2, 3, 5, 7, 9, 10
+- Corresponding NYC temps: [72, 68, 78, 77, 73, 76]
+- Expected median: 74.5
+
+Q6:
+- spread values by day: [28, 29, 34, 23, 22, 24, 22, 19, 23, 25]
+- Expected answer: (3, 34)
+
+Q7:
+- Expected town: Town_2
+
+Q8:
+- Expected correlation: 1.0
+
+Q9:
+- Expected counts: {"sunny": 4, "cloudy": 3, "rain": 3}
+
+Q10:
+- NYC values on sunny days: [70, 68, 80, 73]
+- Expected mean: 72.75
+
+Q11:
+- Rainfall descending gives day order starting with [4, 8, 7, ...]
+- Expected first 3 days: [4, 8, 7]
+
+Q12:
+- Odd days NYC mean: 73.2
+- Even days NYC mean: 75.4
+- Expected dictionary: {"odd": 73.2, "even": 75.4}
+
+How to run
+----------
+From this folder, run:
+
+python solution.py
+
+If your solution is correct, all tests should pass.
+
+Automated tests included
+------------------------
+solution.py includes at least these checks:
+
+Test 1:
+- Q1 returns (10, 8)
+
+Test 2:
+- Q2 returns 74.3
+
+Test 3:
+- Q3 returns 6
+
+Test 4:
+- Q4 returns 2
+
+Test 5:
+- Q5 returns 74.5
+
+Test 6:
+- Q6 returns (3, 34)
+
+Test 7:
+- Q7 returns Town_2
+
+Test 8:
+- Q8 returns 1.0
+
+Test 9:
+- Q9 returns {"sunny": 4, "cloudy": 3, "rain": 3}
+
+Test 10:
+- Q10 returns 72.75
+
+Test 11:
+- Q11 returns [4, 8, 7]
+
+Test 12:
+- Q12 returns {"odd": 73.2, "even": 75.4}
+
+Optional challenge ideas after you solve it
+-------------------------------------------
+1. Rewrite Q6 without using axis=1.
+2. Add a missing value and decide how you want to handle it.
+3. Return the top 2 towns most correlated with NYC.
+4. Make a second dataset and add extra tests.
+5. Add one regression question after you finish the pandas-only section.
+
+Notes on style
+--------------
+This one is intentionally much more basic than the weather regression exercise.
+The goal is speed and familiarity:
+- see the dataframe
+- know the operation
+- write it immediately
