@@ -46,7 +46,7 @@ class Solution:
 
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
-        #Now BFS, so while the queue is non empty we keep exploring level by level
+        #Now BFS, so while the queue is non empty we  keep exploring level by level
 
         while q:
             #Take the first node on the queue and remove it
