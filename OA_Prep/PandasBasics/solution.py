@@ -48,6 +48,9 @@ def question_1(df: pd.DataFrame) -> tuple[int, int]:
         (10, 8)
     """
     # TODO: your code goes here
+    print(f'FIRST ONE: {df.shape}')
+    return df.shape
+    
     raise NotImplementedError
 
 
@@ -59,6 +62,8 @@ def question_2(df: pd.DataFrame) -> float:
         74.3
     """
     # TODO: your code goes here
+    print(f' SECOND ONE: {df['NYC'].mean()}')
+    return df['NYC'].mean()
     raise NotImplementedError
 
 
@@ -70,6 +75,11 @@ def question_3(df: pd.DataFrame) -> int:
         6
     """
     # TODO: your code goes here
+    ny=df["NYC"].tolist()
+    max_temp=max(ny)
+    day=ny.index(max_temp)+1
+    print(f'THIRD ONE: {day}')
+    return day
     raise NotImplementedError
 
 
@@ -81,6 +91,9 @@ def question_4(df: pd.DataFrame) -> int:
         2
     """
     # TODO: your code goes here
+    days=len(df[df['Town_2']>=75])
+    print(f'FOURTH ONE: {days}')
+    return days
     raise NotImplementedError
 
 
@@ -92,6 +105,9 @@ def question_5(df: pd.DataFrame) -> float:
         74.5
     """
     # TODO: your code goes here
+    med=df[(df['Town_3']<=95) & (df['Town_3']>=90)]['NYC'].median()
+    print(f'FIFTH ONE IS : {med}')
+    return med
     raise NotImplementedError
 
 
@@ -107,6 +123,12 @@ def question_6(df: pd.DataFrame) -> tuple[int, int]:
         (3, 34)
     """
     town_cols = ["Town_1", "Town_2", "Town_3", "Town_4"]
+    df['spread']=df[['Town_1','Town_2','Town_3','Town_4']].max(axis=1)-df[['Town_1','Town_2','Town_3','Town_4']].min(axis=1)
+    spread_list=df['spread'].to_list()
+    largest=max(spread_list)
+    day=spread_list.index(largest)+1
+    print(f' SIXTH ONE: {(day,largest)}')
+    return (day,largest)
 
     # TODO: your code goes here
     raise NotImplementedError
@@ -120,6 +142,10 @@ def question_7(df: pd.DataFrame) -> str:
         "Town_2"
     """
     town_cols = ["Town_1", "Town_2", "Town_3", "Town_4"]
+    summary=df[['Town_1','Town_2','Town_3','Town_4']].agg(["std"])
+    town=summary.loc['std'].idxmax()
+    print(f'SEVENTH {town}')
+    return town
 
     # TODO: your code goes here
     raise NotImplementedError
@@ -133,6 +159,9 @@ def question_8(df: pd.DataFrame) -> float:
         1.0
     """
     # TODO: your code goes here
+    rho=df['NYC'].corr(df['Town_1'])
+    print(f' EIGHT: {rho}')
+    return rho
     raise NotImplementedError
 
 
@@ -144,6 +173,12 @@ def question_9(df: pd.DataFrame) -> dict[str, int]:
         {"sunny": 4, "cloudy": 3, "rain": 3}
     """
     # TODO: your code goes here
+    count={}
+    for cond in df['Condition']:
+        count[cond]=count.get(cond,0)+1
+    print(f'NINE : {count}')
+    return count
+
     raise NotImplementedError
 
 
@@ -155,6 +190,9 @@ def question_10(df: pd.DataFrame) -> float:
         72.75
     """
     # TODO: your code goes here
+    nyc_mean=df[df['Condition']=='sunny']['NYC'].mean()
+    print(f'TEN: {nyc_mean}')
+    return nyc_mean
     raise NotImplementedError
 
 
@@ -165,7 +203,11 @@ def question_11(df: pd.DataFrame) -> list[int]:
     Example return:
         [4, 8, 7]
     """
+   
     # TODO: your code goes here
+    biggest_rain= df.sort_values("Rainfall", ascending=False)["day"].head(3).to_list()
+    print(f'ELEVEN {biggest_rain}')
+    return biggest_rain
     raise NotImplementedError
 
 
@@ -178,6 +220,11 @@ def question_12(df: pd.DataFrame) -> dict[str, float]:
         {"odd": 73.2, "even": 75.4}
     """
     # TODO: your code goes here
+    d1=df.groupby(df.index%2==1)['NYC'].mean().to_dict()
+    dicto={}
+    dicto['odd']=d1[False]
+    dicto['even']=d1[True]
+    return dicto
     raise NotImplementedError
 
 
