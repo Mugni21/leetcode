@@ -3,6 +3,10 @@ class Solution:
     #next a again! 
     #If the tdring was just a's, then onluy change the last 'digit'. 
 
+
+    ###REMEMBER: ord() converts a character into an integer (given my some mysterious bijection)
+    #then chr() converst an integer into a character using the inverse of that mysterious bijection again
+
     def smallestString(self, s: str) -> str:
         n=len(s)
         i=0
