@@ -7,6 +7,8 @@ class Solution:
     #frequency now ordered in that descending order but multiplied by their oirignal frequency. So two, layers of sorting
     #First by their frequencies in ascending order and then for the ties in descending order
     def frequencySort(self, nums: List[int]) -> List[int]:
+
+
         #key:num, value:freq
         counts={}
         for i,k in enumerate(nums):
@@ -39,6 +41,7 @@ class Solution:
         counts={}
         for i,k in enumerate(nums):
             counts[k]=counts.get(k,0)+1
+        
 
         #This is the cool part. First sort them by frequency (counts) and then the funciton x \mapsto -x simply
         #reverses the order!
