@@ -13,8 +13,6 @@ class Solution:
                 truckSize-= deleted
                 numbox-= deleted
                 added-=uni*(deleted)
-            if numbox>0:
-                heapq.heappush(boxes,(uni,numbox))
         return added
             
 
